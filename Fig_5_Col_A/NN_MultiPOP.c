@@ -21,16 +21,16 @@ double random_lorentzian(double x0, double gamma) {
     double u0 = (double)rand() / RAND_MAX;
     return x0 + gamma * tan(3.14159265358979323846 * (u0 - 0.5));
 }
-
+// Para la columna A Fig 5
 int main() {
     double t;
     double S_1;
     double S_2;
     double S_0;
-    const double maxt = 3000.;
+    const double maxt = 6000.;
     const double h = 0.0015;
     const double N = 2000; 
-    const double I_B = 1.2; // Columna A
+    double I_B = 1.2; // Columna A
     const double a = 0.4;
     const double Jee_c = 5*sqrt(a);
     const double Jee_s = 35*sqrt(a);
@@ -93,13 +93,20 @@ int main() {
 
         if (t >= 0 && t <= 350) { // corriente para la excitatoria 1 COL A
             I_S_1 = 0.2;
-        }if (t>=1200 && t<=1450){
+        }if ((t >= 650 && t<=800) || (t >= 1050 && t<=1200) || (t>= 1450 && t<=1600) || (t>=1850 && t<= 2000) || (t>=2250 && t<=2400) 
+        || (t>=3250 && t<= 3400) || (t>=3650 && t<= 3800) || (t>=4050 && t<= 4200) || (t>=4450 && t<= 4600) || (t>=4850 && t<= 5000) || (t>=5250 && t<= 5400)) {
             I_S_1 = 0.1;
         }
 
-        if (t >= 1200 && t <= 1450) { // corriente para la excitatoria 2 COL A
+        if (t >= 2650 && t <= 3000) { // corriente para la excitatoria 2 COL A
+            I_S_2 = 0.2;
+        }if ((t >= 650 && t<=800) || (t >= 1050 && t<=1200) || (t>= 1450 && t<=1600) || (t>=1850 && t<= 2000) || (t>=2250 && t<=2400) 
+        || (t>=3250 && t<= 3400) || (t>=3650 && t<= 3800) || (t>=4050 && t<= 4200) || (t>=4450 && t<= 4600) || (t>=4850 && t<= 5000) || (t>=5250 && t<= 5400)) {
             I_S_2 = 0.1;
         }
+        
+
+
 
         for (int i = 1; i <= N; i++) {
             /* Numeric scheme */

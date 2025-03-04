@@ -59,8 +59,8 @@ etas = dvector(1, N + 1);
 
 
 
-Averages_NeuralNetwork=fopen("V.dat","w");
-Spikes=fopen("Spikes.dat","w");
+Averages_NeuralNetwork=fopen("Fig_1_Col_A_averages.dat","w");
+Spikes=fopen("Fig_1_Col_A_spikes.dat","w");
 
 
 
@@ -78,7 +78,7 @@ f[1]= -100.0;
 f[2]= x_0;
 f[3]= U_0;
  
-t=0.0;
+t=-500.0;
 
 	while (t<=maxt){
         S = 0.0;
@@ -91,7 +91,7 @@ t=0.0;
 
         for (int i = 1; i <= N; i++) { // Neuronas
         
-            fprintf(Averages_NeuralNetwork, "%.0f ", V[i]);
+            //fprintf(Averages_NeuralNetwork, "%.0f ", V[i]);
             
 
              /* Numeric scheme */
@@ -128,18 +128,18 @@ t=0.0;
         
         }
 
-        fprintf(Averages_NeuralNetwork, "\n");
+        //fprintf(Averages_NeuralNetwork, "\n");
         //fprintf(time_file, "%lf ", t); 
 
         // Calcular promedio de X,U
-        //double X_sum = 0.0;
-        //double U_sum = 0.0;
-        //for (int i = 1; i <= N; i++) {
-        //    X_sum += X[i];
-        //    U_sum += U[i];
-        //}
+        double X_sum = 0.0;
+        double U_sum = 0.0;
+        for (int i = 1; i <= N; i++) {
+            X_sum += X[i];
+            U_sum += U[i];
+        }
 
-        //fprintf(Averages_NeuralNetwork, "%lf %lf %lf\n", X_sum / N, U_sum / N, t); 
+        fprintf(Averages_NeuralNetwork, "%lf %lf %lf\n", X_sum / N, U_sum / N, t); 
 
         t=t+h;
 
